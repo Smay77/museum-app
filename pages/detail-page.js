@@ -5,6 +5,11 @@ function submitComment() {
     const name = inputField.value
     const textArea = document.getElementById('msg')
     const msg = textArea.value
+
+     // check if user input passes validations
+  if(doesNotPassAllValidations(name, msg)){
+    return null
+  }
     
     // create the elements you need
     const comment = document.createElement('section')
@@ -25,4 +30,31 @@ function submitComment() {
     // reset form values
     inputField.value = null
     textArea.value = null
-  }
+
+    //validation
+    function doesNotPassAllValidations(name, msg) {
+    if (!name && !msg) {
+        alert('You forgot to fill in your name and message!')
+        return true;
+      }
+
+      if(msg.length > 280) {
+        alert('Your comment is too long')
+        return true
+      }
+
+      if (!name) {
+        alert('You forgot to fill in your name!')
+        return true;
+      }
+
+      if (!msg) {
+        alert('You forgot to fill in your message!')
+        return true;
+      }
+    
+      return false
+    }
+
+    console.log(msg)
+}
